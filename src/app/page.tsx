@@ -1,12 +1,14 @@
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Menu } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <>
-      <header className="bg-primary flex w-full justify-between p-5">
-        <h1>Fumaça Zero</h1>
-        <span>-</span>
+      <header className="bg-primary flex w-full justify-between items-center px-5">
+        <Image src="/logo-text.png" alt="Fumaça Zero" width={139} height={80} />
+        <Menu className="h-9 w-9 text-forground" />
       </header>
       <main className="p-5">
         <Card>
