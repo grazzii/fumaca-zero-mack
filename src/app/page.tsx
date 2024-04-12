@@ -1,6 +1,7 @@
 "use client";
 
 import AgeCard from "@/components/cards/age";
+import CountriesCard from "@/components/cards/countries";
 import DeathsCard from "@/components/cards/deaths";
 import { Menu } from "lucide-react";
 import Image from "next/image";
@@ -20,6 +21,7 @@ export default function Home() {
         <ul className="flex flex-col gap-4">
           <AgeCard/>
           <DeathsCard/>
+          <CountriesCard/>
         </ul>
       </main>
     </>

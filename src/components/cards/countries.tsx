@@ -25,6 +25,7 @@ ChartJS.register(
 
 export const options = {
     responsive: true,
+    indexAxis: 'y' as const,
     plugins: {
         legend: {
             display: false,
@@ -34,7 +35,7 @@ export const options = {
         },
         datalabels: {
             color: '#F1DDC3',
-            align: "top",
+            align: "center",
             font: {
                 size: 12,
                 weight: "600",
@@ -42,16 +43,16 @@ export const options = {
                 align: "center"
             },
             formatter: function (value: number) {
-                return value.toLocaleString("pt-BR");
+                return value + "%";
             }
         }
     },
     scales: {
-        y: {
+        x: {
             display: false,
             grid: { display: false },
         },
-        x: {
+        y: {
             grid: { display: false },
             ticks: {
                 color: '#262626bb',
@@ -71,42 +72,42 @@ export const options = {
     }
 };
 
-const deathsByDesease = {
-    "DPOC¹": 37686,
-    "Cardíacas": 33179,
-    "Câncer de Pulmão": 24443,
-    "Outros cânceres": 25683,
+const usersByCountries = {
+    "Rússia": 39.3,
+    "Brasil": 13.9,
+    "Argentina": 21.8,
+    "México": 14,
+    "África do Sul": 20.3,
+    "Índia": 11.5,
 };
 
-const labels = Object.keys(deathsByDesease);
+const labels = Object.keys(usersByCountries);
 
 export const data = {
     labels,
     datasets: [
         {
             label: 'Dataset 1',
-            data: Object.values(deathsByDesease),
+            data: Object.values(usersByCountries),
             backgroundColor: 'var(--foreground)',
             borderRadius: 8,
         },
     ],
 };
-export default function DeathsCard() {
+export default function CountriesCard() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Doenças e mortes</CardTitle>
+                <CardTitle>Fumantes por país</CardTitle>
                 <CardDescription>
-                    atribuídas ao tabaco no Brasil
+                    em países em desenvolvimento em comparação à sua população
                 </CardDescription>
                 <Bar
                     options={options as any}
                     data={data}
                 />
                 <CardDescription>
-                    ¹DPOC: Doença Pulmonar Obstrutiva Crônica
-                    <br />
-                    Fonte: <a href="https://www.iecs.org.ar/wp-content/uploads/brasil_.pdf" target="_blank">IECS</a>
+                    Fonte: Banco Mundial e Ministério da Saúde (2019)
                 </CardDescription>
             </CardHeader>
         </Card>
