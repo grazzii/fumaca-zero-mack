@@ -4,15 +4,22 @@ import AgeCard from "@/components/cards/age";
 import CountriesCard from "@/components/cards/countries";
 import DeathsCard from "@/components/cards/deaths";
 import PoliticsCard from "@/components/cards/politics";
-import { Menu } from "lucide-react";
+import Footer from "@/components/footer";
+import { Button } from "@/components/ui/button";
+import { Speech } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <>
       <header className="bg-primary flex w-full justify-between items-center px-5">
         <Image src="/logo-text.png" alt="Fumaça Zero" width={139} height={80} />
-        <Menu className="h-9 w-9 text-forground" />
+        <Button onClick={() => router.push("/testimonials")} className="bg-none text-foreground text-sm font-medium border-foreground py-4 rounded-full">
+          <Speech className="h-6 w-6 text-forground mr-2" /> Depoimentos
+        </Button>
       </header>
       <main className="p-8 flex flex-col gap-6">
         <div>
@@ -26,15 +33,7 @@ export default function Home() {
           <PoliticsCard />
         </ul>
       </main>
-      <footer className="bg-primary flex w-full justify-between items-center p-5">
-        <Image src="/logo-text.png" alt="Fumaça Zero" width={139} height={80} />
-        <div className="flex flex-col items-end">
-          <p>Desenvolvido por:</p>
-          <p>Graziely Severo (RA: 10425431)</p>
-          <p>Luis Felipe (RA: 10420572)</p>
-          <p>Marcos Minhano (RA: 10428577)</p>
-        </div>
-      </footer>
+      <Footer/>
     </>
   );
 }
