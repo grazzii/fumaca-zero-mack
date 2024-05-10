@@ -73,29 +73,32 @@ export const options = {
     }
 };
 
-interface Countries { [country: string]: number };
+interface Country {
+    name: string;
+    percentage: number;
+};
 
 export default function CountriesCard() {
-    const [usersByCountries, setUsersByCountries] = useState<Countries>({});
+    const [countries, setCountries] = useState<Country[]>([]);
 
-    const labels = useMemo(() => Object.keys(usersByCountries), [usersByCountries]);
-
-    const data = useMemo(() => ({
-        labels,
-        datasets: [
-            {
-                label: 'Dataset 1',
-                data: Object.values(usersByCountries),
-                backgroundColor: 'var(--foreground)',
-                borderRadius: 8,
-            },
-        ],
-    }), [labels, usersByCountries]);
+    const data = useMemo(() => {
+        return {
+            labels: countries.map(c => c.name),
+            datasets: [
+                {
+                    label: 'Dataset 1',
+                    data: countries.map(c => c.percentage),
+                    backgroundColor: 'var(--foreground)',
+                    borderRadius: 8,
+                },
+            ],
+        };
+    }, [countries]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/users_by_country")
+        fetch("http://localhost:8080/countries")
             .then(res => res.json())
-            .then(setUsersByCountries);
+            .then(setCountries);
     }, []);
 
     return (

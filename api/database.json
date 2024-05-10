@@ -1,10 +1,28 @@
 {
-    "users_by_country": {
-        "Rússia": 39.3,
-        "Brasil": 13.9,
-        "Argentina": 21.8,
-        "México": 14,
-        "África do Sul": 20.3,
-        "Índia": 11.5
-    }
+    "countries": [
+        {
+            "name": "Brasil",
+            "percentage": 13.9
+        },
+        {
+            "name": "Rússia",
+            "percentage": 39.3
+        },
+        {
+            "name": "Argentina",
+            "percentage": 21.8
+        },
+        {
+            "name": "México",
+            "percentage": 14
+        },
+        {
+            "name": "África do Sul",
+            "percentage": 20.3
+        },
+        {
+            "name": "Índia",
+            "percentage": 11.5
+        }
+    ]
 }
