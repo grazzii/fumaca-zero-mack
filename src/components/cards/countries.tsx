@@ -11,6 +11,7 @@ import {
     Tooltip,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { useEffect, useMemo, useState } from "react";
 import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
@@ -72,29 +73,31 @@ export const options = {
     }
 };
 
-const usersByCountries = {
-    "Rússia": 39.3,
-    "Brasil": 13.9,
-    "Argentina": 21.8,
-    "México": 14,
-    "África do Sul": 20.3,
-    "Índia": 11.5,
-};
+interface Countries { [country: string]: number };
 
-const labels = Object.keys(usersByCountries);
-
-export const data = {
-    labels,
-    datasets: [
-        {
-            label: 'Dataset 1',
-            data: Object.values(usersByCountries),
-            backgroundColor: 'var(--foreground)',
-            borderRadius: 8,
-        },
-    ],
-};
 export default function CountriesCard() {
+    const [usersByCountries, setUsersByCountries] = useState<Countries>({});
+
+    const labels = useMemo(() => Object.keys(usersByCountries), [usersByCountries]);
+
+    const data = useMemo(() => ({
+        labels,
+        datasets: [
+            {
+                label: 'Dataset 1',
+                data: Object.values(usersByCountries),
+                backgroundColor: 'var(--foreground)',
+                borderRadius: 8,
+            },
+        ],
+    }), [labels, usersByCountries]);
+
+    useEffect(() => {
+        fetch("http://localhost:8080/users_by_country")
+            .then(res => res.json())
+            .then(setUsersByCountries);
+    }, []);
+
     return (
         <Card>
             <CardHeader>
