@@ -24,7 +24,7 @@ export default function Home() {
       <main className="p-8 flex flex-col gap-6">
         <div>
           <h1 className="text-4xl font-bold">Dados</h1>
-          <p>Veja dados sobre tabagismo para se conscientizar!</p>
+          <p>Veja todos os dados sobre tabagismo para se conscientizar!</p>
         </div>
         <ul className="flex flex-col gap-4">
           <AgeCard />
